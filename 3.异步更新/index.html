@@ -11,28 +11,20 @@
     <!--如果是对象数据类型 会做一个处理JSON.stringify() -->
     <div id="app" style="color:red">
         <li style="color:blue">
-            {{arr}}  {{a}}
+            {{arr}}  {{school}}
         </li>
     </div>
     <script src="dist/umd/vue.js"></script>
     <script>
-        // 混合 混入  全局混入
-        Vue.mixin({ 
-            created:function a() {
-                console.log('created...')
-            }
-        })
-        Vue.mixin({
-            created:function b() {
-                console.log('created...')
-            }
-        })
         // options Api 通过一个选项进行配置
         let vm = new Vue({
             el: '#app',
             data() {
                 // 通过数组更新索引和长度更新是无效的
-                return { arr: [{a:1}, 2, 3],a:1}
+                return {  
+                    arr: [1, 2, 3],
+                    school: { name: 'zf', age: 10 }
+                }
             },
             created() { // 生命周期 就是回调函数， 先订阅好 后续会触发此方法
                 console.log('my created')
@@ -46,17 +38,17 @@
         // 批处理  -》 vue异步更新 ，更新数据后不能立刻拿到最新的节点
         // nextTick 等待页面更新好后再获取最终dom
         
-        setTimeout(() => {
-            vm.arr.push(123);
-            vm.arr.push(123);
-            vm.arr.push(123);
-            vm.arr.push(123);
-            vm.a = 100; // 如果更新数据 watcher.update()方法
-            console.log(vm.$el.innerHTML,'11111111111111')
-            vm.$nextTick(()=>{
-                console.log(vm.$el.innerHTML,'22222222222222')
-            })
-        }, 1000);
+        // setTimeout(() => {
+        //     vm.arr.push(123);
+        //     vm.arr.push(123);
+        //     vm.arr.push(123);
+        //     vm.arr.push(123);
+        //     vm.a = 100; // 如果更新数据 watcher.update()方法
+        //     console.log(vm.$el.innerHTML,'11111111111111')
+        //     vm.$nextTick(()=>{
+        //         console.log(vm.$el.innerHTML,'22222222222222')
+        //     })
+        // }, 1000);
         // setTimeout(() => {
         //     vm.school.a ; // 重新调用_render 在调用_update
            

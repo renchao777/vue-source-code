@@ -17,6 +17,7 @@
     "rollup-plugin-serve": "^1.0.3"
   },
   "dependencies": {
+    "caniuse-lite": "^1.0.30001664",
     "vue": "^2.6.11"
   }
 }
